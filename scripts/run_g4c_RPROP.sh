@@ -1,14 +1,14 @@
 for i in {1..25}
 do
-  echo "#START###############################"
-  echo "mlp -c z 3 2 2 4"
-  mlp -c z 3 2 2 4
+  echo "## RUN $i ###########################################"
+  echo "../bin/mlp -c ../bin/g4c.nn 3 2 2 4"
+  ../bin/mlp -c ../bin/g4c.nn 3 2 2 4
   echo " "
-  echo "mlp -t z g4c_training.csv 12000 2 0 0 -e 0.26"
-  mlp -t z g4c_training.csv 12000 2 0 0 -e 0.26
+  echo "../bin/mlp -t ../bin/g4c.nn ../training/g4c_training.csv 12000 2 0 0 -e 0.26"
+  ../bin/mlp -t ../bin/g4c.nn ../training/g4c_training.csv 12000 2 0 0 -e 0.26
   echo " "
-  echo "mlp -r z g4c_test.csv"
-  mlp -r z g4c_test.csv
-  echo "#STOP################################"
+  echo "../bin/mlp -r ../bin/g4c.nn ../training/g4c_test.csv"
+  ../bin/mlp -r ../bin/g4c.nn ../training/g4c_test.csv
+  echo "#####################################################"
   echo " "
 done
