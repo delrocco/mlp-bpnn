@@ -1,0 +1,88 @@
+----------------------------------------
+MLP-BPNN
+----------------------------------------
+
+A Multilayer Perceptron Backpropagation Neural Network program with research paper and
+results circa 2011.
+
+----------------------------------------
+HELP
+----------------------------------------
+
+How to use this program.
+
+One of the following arguments is required:
+  -c|create  (creates MLP BPNN model and saves it)
+  -t|train   (trains existing model and saves it)
+  -r|run     (runs existing model against data set)
+  -v|view    (prints an existing model's information)
+  -n|nmn     (generates N-M-N encoder dataset)
+
+The following arguments are optional:
+  -h|help          (prints this help message)
+  -s|seed  <seed>  (specify PRN seed to repeat results)
+  -e|error <0-1>   (use classification error threshold as convergence)
+  -show_learn      (show learing results in real time)
+  -show_model      (show network model)
+  -add|additive    (additional training to existing weights)
+  -xor             (creates XOR model - trains only 1 epoch)
+
+(C)reate command syntax:
+  -c <name> <layers> <I> <H> <O>
+     <name>     = filename to use for model file
+     <layers>   = # of total layers including Input & Output
+     <I>        = # of nodes in Input Layer
+     <H>        = # of nodes in Hidden Layers
+     <O>        = # of nodes in Output Layer
+
+(T)rain command syntax:
+  -t <name> <dataset> <epochs> <learning> <eta> <alpha>
+     <name>     = filename of model
+     <dataset>  = filename of training data
+     <epochs>   = max # of epochs to run training
+     <learning> = 0|1|2 for GD,GDM,RPROP respectively
+     <eta>      = learning rate (0-?)
+     <alpha>    = momentum rate (0-1) (GDM only)
+
+(R)un command syntax:
+  -r <name> <dataset>
+     <name>     = filename of model file
+     <dataset>  = filename of test data
+
+(V)iew command syntax:
+  -v <name>
+     <name>     = filename of model file
+
+(N)MN command syntax:
+  -n <name> <N> <patterns>
+     <name>     = filename of dataset
+     <N>        = number of nodes in Input & Output layer (w/out bias)
+     <patterns> = number of test patterns to generate
+
+Note that you do not have to account for bias nodes,
+  they will be added-in automatically.  So passing 2
+  for the # of input nodes will ultimately result in
+  3 nodes with the bias node.
+Note that momentum rate (alpha) is only used for GDM
+  training method.
+Note the PRN seed effects anything randomized, such
+  as the initial weights, selection of patterns, etc.,
+  so the exact same model and training can be duplicated
+  by using the same PRN.
+
+Example Usage:
+  > program -c m1 4 2 8 5
+  > program -c m2 4 2 3 5 -s 91768385
+  > program -t m2 CinS500_train.csv 5000 0 1.0 0
+  > program -t m2 CinS500_train2.csv 2000 0 0.85 0 -add
+  > program -r m2 CinS500_test.csv
+  > program -v m1
+  > program -h
+
+----------------------------------------
+NOTES
+----------------------------------------
+
+The original program was compiled and run in Cygwin on Windows7.
+Modifications have been made to the directory structure and scripts to better support
+*nix systems.
